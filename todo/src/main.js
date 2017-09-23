@@ -40,6 +40,7 @@ let app = new Vue({
       }
       this.todos.push({content:this.newTodo,completed: false});
       this.newTodo = '';
+
     },
     removeTodo(index){
       this.todos.splice(index,1)
