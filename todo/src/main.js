@@ -18,7 +18,7 @@ var filters = {
   }
 }
 
-new Vue({
+let app = new Vue({
   el:'.todoapp',
   data(){
     return {
@@ -84,7 +84,18 @@ new Vue({
       }
     },
     filteredTodos(){
-
+      return filters[this.hashName](this.todos)
     }
   }
 })
+
+function hashChange(){
+  let hashName = location.hash.replace(/#\/?/,'')
+  if(filters[hashName]){
+    app.hashName = hashName;
+  }else{
+    location.hash = ''
+    app.hashName = 'all'
+  }
+}
+window.addEventListener('hashchange',hashChange)
